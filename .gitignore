@@ -1,6 +1,7 @@
 __pycache__/
 *.pyc
-allure_results/
+allure_results/*
+!allure_results/.gitkeep  # Исключение для пустого файла
 allure_report/
 geckodriver.log
 *.log
