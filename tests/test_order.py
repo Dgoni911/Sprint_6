@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 import pytest
 import allure
 from selenium.webdriver.support.ui import WebDriverWait
@@ -115,7 +115,7 @@ class TestOrder:
             
             with allure.step('Закрыть новое окно и вернуться'):
                 driver.close()
-=======
+
 import pytest
 import allure
 from selenium.webdriver.support.ui import WebDriverWait
@@ -232,5 +232,5 @@ class TestOrder:
             
             with allure.step('Закрыть новое окно и вернуться'):
                 driver.close()
->>>>>>> 5e94532fc497709f8b899320f9d7b50e5d8148b5
+
                 driver.switch_to.window(main_window)
