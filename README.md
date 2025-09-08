@@ -1,16 +1,15 @@
 # Sprint_6 
-ΰ®¥ªβ  Άβ®¬ β¨§ ζ¨¨ β¥αβ¨ΰ®Ά ­¨ο 
- 
-## “αβ ­®Άª  
-\`pip install -r requirements.txt\` 
- 
-## ‡ ―γαª β¥αβ®Ά 
-\`pytest tests/ --alluredir=allure_results -v\` 
- 
-## ƒ¥­¥ΰ ζ¨ο ®βη¥β  Allure 
-\`allure serve allure_results\` 
- 
-## ‘βΰγªβγΰ  ―ΰ®¥ªβ  
-- \`pages/\` - Page Object ¬®¤¥«¨ 
-- \`tests/\` - ’¥αβλ 
-- \`conftest.py\` - ”¨ªαβγΰλ pytest 
+allure_results
+β”β”€β”€ pages/
+β”‚   β”β”€β”€ __init__.py
+β”‚   β”β”€β”€ base_page.py
+β”‚   β”β”€β”€ main_page.py
+β”‚   β””β”€β”€ order_page.py
+β”β”€β”€ tests/
+β”‚   β”β”€β”€ __init__.py
+β”‚   β”β”€β”€ test_faq.py
+β”‚   β””β”€β”€ test_order.py
+β”β”€β”€ conftest.py
+β”β”€β”€ requirements.txt
+β”β”€β”€ .gitignore
+β””β”€β”€ README.md
