@@ -8,9 +8,18 @@ from data import ORDER_TEST_DATA
 @allure.story('Позитивные сценарии заказа')
 class TestOrder:
     
-    @allure.title('{order_data[test_name]}')
-    @pytest.mark.parametrize('order_data', ORDER_TEST_DATA)
-    def test_order_scooter_positive(self, driver, order_data):
+    @allure.title('Заказ через верхнюю кнопку - черный самокат')
+    def test_order_top_button_black_scooter(self, driver):
+        order_data = ORDER_TEST_DATA[0]  
+        self._perform_order_test(driver, order_data)
+    
+    @allure.title('Заказ через нижнюю кнопку - серый самокат') 
+    def test_order_bottom_button_grey_scooter(self, driver):
+        order_data = ORDER_TEST_DATA[1]  
+        self._perform_order_test(driver, order_data)
+    
+    def _perform_order_test(self, driver, order_data):
+        """Общая логика выполнения заказа"""
         main_page = MainPage(driver)
         order_page = OrderPage(driver)
         
@@ -26,7 +35,7 @@ class TestOrder:
         with allure.step('Заполнить форму личной информации'):
             order_page.fill_personal_info(
                 order_data["name"],
-                order_data["lastname"],
+                order_data["lastname"], 
                 order_data["address"],
                 order_data["metro"],
                 order_data["phone"]
@@ -36,13 +45,14 @@ class TestOrder:
             order_page.fill_rental_info(
                 order_data["date"],
                 order_data["rental_period"],
-                order_data["color"],
+                order_data["color"], 
                 order_data["comment"]
             )
         
         with allure.step('Проверить успешное оформление заказа'):
             assert order_page.is_success_modal_displayed(), \
                 "Модальное окно успешного заказа не отображается"
+
     
     @allure.title('Проверка перехода по логотипу Самоката')
     def test_scooter_logo_redirect(self, driver):

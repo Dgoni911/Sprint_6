@@ -9,13 +9,10 @@ class MainPage(BasePage):
     FAQ_ANSWERS = (By.CSS_SELECTOR, "[data-accordion-component='AccordionItemPanel']")
     
     # Кнопки заказа 
-    ORDER_BUTTON_TOP = (By.CSS_SELECTOR, "button.Button_Button__ra12g.Button_Middle__1CSJM")
-    ORDER_BUTTON_BOTTOM = (By.CSS_SELECTOR, "button.Button_Button__ra12g.Button_Middle__1CSJM:last-of-type")
+    ORDER_BUTTON_TOP = (By.XPATH, "//div[contains(@class, 'Home_Header')]//button[text()='Заказать']")
+    ORDER_BUTTON_BOTTOM = (By.XPATH, "//div[contains(@class, 'Home_FinishButton')]//button[text()='Заказать']")
     
-    # Или
-    ORDER_BUTTON = (By.XPATH, ".//button[contains(@class, 'Button_Button__ra12g') and text()='Заказать']")
-    
-    # Логотипы 
+    # Логотипы
     SCOOTER_LOGO = (By.CSS_SELECTOR, "a.Header_LogoScooter__3lsAR")
     YANDEX_LOGO = (By.CSS_SELECTOR, "a.Header_LogoYandex__3TSOI")
     
@@ -46,23 +43,22 @@ class MainPage(BasePage):
     
     @allure.step("Кликнуть верхнюю кнопку заказа")
     def click_order_button_top(self):
-        # Используем первый найденный элемент 
-        buttons = self.find_elements(self.ORDER_BUTTON)
-        if buttons:
-            self.scroll_to_element(buttons[0])
-            buttons[0].click()
-        else:
-            raise Exception("Order button not found")
+        button = self.find_element(self.ORDER_BUTTON_TOP)
+        self.scroll_to_element(button)
+        button.click()
     
     @allure.step("Кликнуть нижнюю кнопку заказа")
     def click_order_button_bottom(self):
-        # Используем последний найденный элемент
-        buttons = self.find_elements(self.ORDER_BUTTON)
-        if buttons and len(buttons) > 1:
-            self.scroll_to_element(buttons[-1])
-            buttons[-1].click()
+        button = self.find_element(self.ORDER_BUTTON_BOTTOM)
+        self.scroll_to_element(button)
+        button.click()
+    
+    @allure.step("Нажать кнопку заказа: {button_type}")
+    def click_order_button(self, button_type: str):
+        if button_type == "top":
+            self.click_order_button_top()
         else:
-            raise Exception("Bottom order button not found")
+            self.click_order_button_bottom()
     
     @allure.step("Кликнуть логотип Самоката")
     def click_scooter_logo(self):
